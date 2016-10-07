@@ -1,0 +1,295 @@
+body{
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    color: #777777;
+    /*background-color: #e6e6e6;*/
+    background-image: url("../images/concrete_seamless.png");
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: Georgia, Times, 'Times New Roman', serif;
+    color: #4aaaa5;
+    font-weight: bold;
+}
+
+#headerNav{
+    background-color: white;
+    border-bottom: 2px solid #cccccc;
+}
+
+#headerNavbarHeader{
+    background-color: teal;
+    border-radius: 5px;
+}
+
+#headerNavbarHeader > h2{
+    color: white;
+    padding: 0 10px 10px;
+    margin-bottom: 0;
+}
+
+#headerNavbar{
+    padding: 10px;
+}
+
+footer{
+    background-color: #666666;
+    border-top: 10px solid teal;
+    margin-top: 20px;
+    padding: 10px 0;
+}
+
+.nav-pills>li.active>a{
+    background-color: teal;
+}
+
+.nav-pills>li>a:hover{
+    background-color: teal;
+    color:white;
+}
+
+.nav-pills>li.active>a:hover{
+    background-color: #666;
+    color: teal;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+#picOfMe{
+    margin: 0 5px 0 0;
+    float: left;
+}
+
+#leftOfMain, #rightOfMain{
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    /*position: relative;*/
+}
+
+#leftOfMain  p, #leftOfMain h3{
+    padding: 5px;
+}
+
+#leftOfMain  h3{
+    padding-bottom: 0px;
+    border-bottom: 2px solid #cccccc;
+}
+#leftOfMain p{
+    line-height: 1.8em;
+    margin: 0 0 0px 0;
+    position: relative;
+}
+
+#leftOfMain ol li{
+    margin-top: 5px;
+}
+
+#leftOfMain ol{
+    list-style-type: decimal;
+}
+
+#rightOfMain ul{
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Had to do the following to be able to use the CSS version of tooltip with Bootstrap */
+
+#leftOfMain .myTooltip{
+    display: inline-block;
+    float: left;
+    position: relative;
+}
+
+#rightOfMain .myTooltip{
+    position: relative;
+}
+
+/* Tooltip text - Pilfered from the Internet*/
+.myTooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: teal;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.myTooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+
+
+/*header{
+    background-color: white;
+}*/
+/*#headerRow{
+    background-color: #2b3e50;
+    width: 80%;
+    margin: 0 auto;
+}*/
+/*html{
+
+}
+
+h2 {
+   font-weight: bold;
+}
+
+
+
+header{
+    background-color: #ffffff;
+    border-bottom: 2px solid #cccccc;
+}
+
+#rightOfInsideHeader>ul{
+    padding:10px;
+}
+
+footer{
+   background-color: #666666;
+    border-top: 10px solid teal;
+}
+
+#leftOfInsideHeader{
+    background-color: teal;
+    border: 1px solid #ddd;
+}
+
+#leftOfInsideHeader h1, #leftOfInsideHeader h2{
+    color: white;
+}
+
+#rightOfInsideHeader{
+ }
+
+#rightOfMain ul{
+    width: 50%;
+    float: right;
+    background-color: #fff;
+    border-radius: 5px;
+}*/
+
+/*
+
+a{
+	text-decoration: none;
+ }
+
+a:link    {
+    color:green; 
+    background-color:transparent; 
+    text-decoration:none;
+    color:inherit;
+}
+a:visited {color:pink; 
+    background-color:transparent; 
+    text-decoration:none;
+    color:inherit;
+}
+a:hover   {color:red; 
+    background-color:#ccc; 
+    text-decoration:none;
+    color:inherit;
+}
+a:active  {color:yellow; 
+    background-color:teal;
+    opacity: 0.7;
+    text-decoration:none;
+    color:inherit;
+}
+
+p{
+	margin: 10px;
+	padding: 10px;
+}
+
+
+
+#insideHeader, main{
+	width: 960px;
+	margin: 0 auto;
+}
+
+
+
+
+#rightOfInsideHeader li{
+	display: inline-block;
+	font-size: .8em;
+    margin: 0px;
+}
+
+#rightOfInsideHeader li a{
+    padding: 10px;
+}
+
+main{
+    padding: 10px;
+	clear: both;
+}
+
+footer h6{
+	text-align: center;
+}
+
+img{
+    border-radius: 10px;
+    float: left;
+    margin: 0px 5px 0px 0;
+}
+
+#leftOfMain{
+    width: 650px;
+    padding: 10px;
+    float: left;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+
+
+#leftOfMain h3{
+    padding-left: 10px;
+    margin-left: 10px;
+    border-bottom: 2px solid #cccccc;
+}
+
+#leftOfMain ol{
+    margin-left: 30px;
+}
+
+#leftOfMain ol li{
+    padding: 5px;
+}
+
+#rightOfMain{
+    width: 270px;
+    float: right;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#rightOfMain ul{
+    margin-bottom: 20px;
+}
+
+#rightOfMain li{
+    display: inline-block;
+    margin: 5px;
+}
+*/
