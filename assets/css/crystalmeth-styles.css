@@ -1,5 +1,5 @@
 body{
-    background-image: url("../images/schnauzers.jpg");
+    background-image: url("../images/crystalbackground.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -34,8 +34,21 @@ body{
 }
 
 .information{
-    padding: 10px;
+    padding: 3px;
     background-color: white;
     border-radius: 5px;
     margin-bottom: 5px;
+}
+#crystals{
+    margin: 0;
+}
+
+#crystals ul{
+    margin: 0 0 20px 0;
+    padding: 0;
+}
+
+#crystals ul li{
+    display: inline-block;
+    margin: 5px;
 }

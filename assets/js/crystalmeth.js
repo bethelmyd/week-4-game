@@ -14,13 +14,13 @@ var gameOn = false;
 var man = ["head", "body", "leftArm", "rightArm", "leftLeg", "rightLeg"];
 
 
-document.onload = playMusic();
+// document.onload = playMusic();
 
 document.querySelector("#startBtn").onclick = function(event)
 {
 	if(!gameOn)
 	{
-		stopMusic();
+		// stopMusic();
 		reset();		
 		gameOn = true;
 		generateWord();
