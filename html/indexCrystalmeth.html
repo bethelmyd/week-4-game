@@ -3,17 +3,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Crystal Collector</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+-->
+<script src="../assets/js/jquery-2.1.1.js"></script>
 
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>	
+<!-- Latest compiled and minified JavaScript -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>	 -->
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="../assets/js/bootstrap.min.js"></script>	
 
-	<!-- <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css" rel="stylesheet" integrity="sha384-Xqcy5ttufkC3rBa8EdiAyA1VgOGrmel2Y+wxm4K3kI3fcjTWlDWrlnxyD6hOi3PF" crossorigin="anonymous">	 -->
+<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+-->
 
-	<link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
-	<link rel="stylesheet" type="text/css" href="../assets/css/crystalmeth-styles.css">
+<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+
+<!-- <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css" rel="stylesheet" integrity="sha384-Xqcy5ttufkC3rBa8EdiAyA1VgOGrmel2Y+wxm4K3kI3fcjTWlDWrlnxyD6hOi3PF" crossorigin="anonymous">	 -->
+
+<link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
+<link rel="stylesheet" type="text/css" href="../assets/css/crystalmeth-styles.css">
 
 </head>
 <body>
@@ -36,45 +43,42 @@
 			<section class = "col-md-6">
 				<div id="leftOfMain">
 					<h3>Instructions</h3>
-					<p>Determine which word has been selected by the computer by guessing the letters that make up the word.<br>
-						The word must be guessed before the complete figure of a man is drawn. <br>
-						Each wrong guess results in another part of the man being drawn starting with the head.
-					</p>
-					<h4>Theme - Going to the Dogs</h4>
-					<p>Each of the words represents a breed of dog. See if you can guess which one.
+					<p>Each crystal is worth a different number of points. The computer will generate a hidden number representing the cost of an item. The goal is for you to click on one or more of the crystals until you get to the cost of the item. If you go over, you lose.
 					</p>
 					<p><button id="startBtn" class="btn btn-hangman">Click to start game</button>
 						<button id="resetBtn" class="btn btn-hangman">Click to reset game</button>
 						<button id="resetScoreBtn" class="btn btn-hangman">Click to reset scoreboard</button>
 					</p>
-					<p>
 					</div>
 				</section>
 				<section class = "col-md-3">
 					<div class="information">
-						<h4 class="text-center">Crystal World</h4>
-						<div id="crystals" class="text-center">
-							<ul>
-								<li><img src="../assets/images/charoite.jpg"></li>
-								<li><img src="../assets/images/lapis-lazuli.jpg"></li>
-								<li><img src="../assets/images/rhodonite.jpg"></li>
-								<li><img src="../assets/images/coral-aura.jpg"></li>
-							</ul>
+						<h4 class="row text-center">Crystal World</h4>
+						<div class="row text-center crystals">
+							<div class="col-md-6"><button id="charoite"><img src="../assets/images/charoite.jpg"></button></div>
+							<div class="col-md-6"><button id = "lapis-lazuli"><img src="../assets/images/lapis-lazuli.jpg"></button></div>
 						</div>
+						<div class="row text-center crystals">
+							<div class="col-md-6"><button id="rhodonite"><img src="../assets/images/rhodonite.jpg"></button></div>
+							<div class="col-md-6"><button id="coral-aura"><img src="../assets/images/coral-aura.jpg"></button></div>
+						</div>
+						<h4 id = "startErrorMessage" class="row text-center">Please click to start game before selecting a crystal.</h4>
 					</div>
-				</section>
-				<section class="col-md-3">
+				</div>
+			</section>
+			<section class="col-md-3">
 <!-- 			<div class="row">
 -->				
 <div class="information">
-	<h4 class="text-center">Crystal World Game Score</h4>
-	<p>Your incorrect guesses so far: <span id="youGuessed"></span></p>					
-	<p>Number of letters left to guess: <span id="numGuessesLeft"></span></p>					
+	<h4 class="text-center">Crystal Collector Game Score</h4>
+	<p>Your current total: <span id="currentTotal">0</span></p>					
+	<p>Number of guesses left: <span id="numGuessesLeft">0</span></p>
+	<p id="computerNumber"></p>					
 </div>
 <!-- 				</div>-->
 <!--				<div class="row"> -->
 <div class="information">
-	<h4 class="text-center">Crystal World Summary Scoreboard</h4>
+	<h4 class="text-center">Crystal Collector Summary Scoreboard</h4>
 	<p>Games won: <span id = "wins">0</span></p>
 	<p>Games lost: <span id="losses">0</span></p>					
 	<p>Total games: <span id="total">0</span></p>					
