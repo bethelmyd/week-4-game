@@ -5,15 +5,18 @@ var losses = 0;
 var guessesLeft = 0;
 var gameOver = false;
 var gameOn = false;
-var maxComputerNumber = 21;
-var minComputerNumber = 20;
+var maxComputerNumber = 21;  //120
+var minComputerNumber = 20;  //19
 var computerRandomNumber = 0;
+var maxCrystalNumber = 12;
+var minCrystalNumber = 1;
 var currentTotal = 0;
+var currentBalance = 0;
 var crystals = {
-	'charoite': 1,
-	'lapis-lazuli': 5,
-	'rhodonite': 10,
-	'coral-aura': 20
+	'charoite': 0,
+	'lapis-lazuli': 0,
+	'rhodonite': 0,
+	'coral-aura': 0
 };
 
 // document.onload = playMusic();
@@ -25,8 +28,7 @@ $().ready(function(){
 		// stopMusic();
 		reset();		
 		gameOn = true;
-		generateRandomNumber();
-		$("#numGuessesLeft").html(guessesLeft);
+		generateComputerRandomNumber();
 	}
 });
 
@@ -47,10 +49,12 @@ $().ready(function(){
 	{
 		if(gameOn)
 		{
+			generateCrystalsRandomNumbers();
 			processRound($(this));
 			if(!gameOn)
 			{
 				seeWhoWon();
+				displaySummaryStats();
 			}
 		}
 		else{
@@ -59,24 +63,35 @@ $().ready(function(){
 	});
 });  //end ready function
 
-function generateRandomNumber()
+function generateComputerRandomNumber()
 {
 	var multiplier = maxComputerNumber - minComputerNumber + 1;
 	computerRandomNumber = Math.floor(Math.random() * multiplier) + minComputerNumber;
-	console.log(computerRandomNumber);
+	$("#computerNumber").html(computerRandomNumber);
 }
 
-function showRandomNumber(message)
+function generateCrystalsRandomNumbers()
+{
+	var multiplier = maxCrystalNumber - minCrystalNumber + 1;
+	$(".information button").each(function(){
+		var id = $(this).attr('id');
+		var crystalRandomNumber = Math.floor(Math.random() * multiplier) + minCrystalNumber;
+		crystals[id] = crystalRandomNumber;
+		console.log(crystals[id]);
+	});
+}
+
+function showResults(message)
 	//This shows the number to the loser if she lost
 	{
-		var where = $("#computerNumber");
+		var where = $("#results");
 		if(message == "won")
 		{
 			where.html("Congratulations! You won!");
 		}
 		else
 		{
-			where.html("Sorry! You lost! The computer guessed: " + computerRandomNumber);
+			where.html("Sorry! You lost!");
 		}
 	}
 
@@ -84,7 +99,9 @@ function showRandomNumber(message)
 	{
 		var worth = crystals[$this.attr("id")];
 		currentTotal += worth;
+		currentBalance = computerRandomNumber - currentTotal;
 		$("#currentTotal").html(currentTotal);
+		$("#balance").html(currentBalance);
 		gameOn = (currentTotal < computerRandomNumber);
 
 	}
@@ -94,13 +111,17 @@ function showRandomNumber(message)
 		if(currentTotal == computerRandomNumber)
 		{
 			wins++;
-			showRandomNumber("won");
+			showResults("won");
 		}
 		else
 		{
 			losses++;
-			showRandomNumber("Sorry! But the computer guessed:");
+			showResults("lost");
 		}
+	}
+
+	function displaySummaryStats()
+	{
 		$("#wins").html(wins);	
 		$("#losses").html(losses);	
 		$("#total").html(wins+losses);		
@@ -111,11 +132,13 @@ function showRandomNumber(message)
 		guessesLeft = 0;
 		computerRandomNumber = 0;
 		currentTotal = 0;
+		currentBalance = 0;
 		gameOver = false;
 		gameOn = false;
 		$("#computerNumber").html("");
-		$("#currentTotal").html("");
-		$("#numGuessesLeft").html("");
+		$("#currentTotal").html("0");
+		$("#balance").html("0");
+		$("#results").html("");
 		$("#startErrorMessage").css("display", "none");
 	}
 
