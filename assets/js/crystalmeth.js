@@ -5,8 +5,8 @@ var losses = 0;
 var guessesLeft = 0;
 var gameOver = false;
 var gameOn = false;
-var maxComputerNumber = 21;  //120
-var minComputerNumber = 20;  //19
+var maxComputerNumber = 120;
+var minComputerNumber = 19;
 var computerRandomNumber = 0;
 var maxCrystalNumber = 12;
 var minCrystalNumber = 1;
@@ -20,17 +20,18 @@ var crystals = {
 };
 
 // document.onload = playMusic();
-$().ready(function(){
+$(document).ready(function(){
 	$("#startBtn").on("click", function(event)
 	{
 		if(!gameOn)
 		{
-		// stopMusic();
-		reset();		
-		gameOn = true;
-		generateComputerRandomNumber();
-	}
-});
+			// stopMusic();
+			reset();		
+			gameOn = true;
+			generateComputerRandomNumber();
+			generateCrystalsRandomNumbers();
+		}
+	});
 
 	$("#resetBtn").on("click", function(event)
 	{
@@ -49,7 +50,6 @@ $().ready(function(){
 	{
 		if(gameOn)
 		{
-			generateCrystalsRandomNumbers();
 			processRound($(this));
 			if(!gameOn)
 			{
