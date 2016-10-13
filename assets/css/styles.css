@@ -108,6 +108,13 @@ a{
     position: relative;
 }
 
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
 /* Tooltip text - Pilfered from the Internet*/
 .myTooltip .tooltiptext {
     visibility: hidden;

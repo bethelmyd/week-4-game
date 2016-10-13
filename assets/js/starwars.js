@@ -1,25 +1,10 @@
-var wins = 0;
-var losses = 0;
-
 $(document).ready(function(){
-	$("#fighters > div").on("click", function(event){
-		var opponentArea = $("#opponents");
-		var fighters = $("#fighters > div");
-		var clicked = this;
-		fighters.each(function(){
-			if(clicked !== this){
-				opponentArea.append(this);
-			}
+	var wins = 0;
+	var losses = 0;
 
-		});
-	});//end on click for fighters
+	$("#fighters > div").on("click", whenFighterClicked);//end on click for fighters
 
 
-	$("#opponents > div").on("click", function(event){
-		var currentOpponentArea = $("#currentOpp");
-		console.log(currentOpponentArea);
-		currentOpponentArea.append(this);
-	});//end on click for opponents
 
 	$("#resetBtn").on("click", function(event){
 		reset();
@@ -33,21 +18,43 @@ $(document).ready(function(){
 
 
 
+	function whenFighterClicked(event)
+	{
+		var opponentArea = $("#opponents");
+		var fighters = $("#fighters > div");
+		var clicked = this;
+		fighters.each(function(){
+			if(clicked !== this){
+				opponentArea.append(this);
+				$(this).off("click");
+				$(this).on("click", function(event){
+					var currentOpponentArea = $("#currentOpp");
+					currentOpponentArea.append(this);
+					$(this).off("click");
+				});//end on click for opponents);
+			}
 
+		});
+	}	
 
-});//end document ready
+	function reset(){
+		var opponents = $("#opponents > div");
+		opponents.off("click");
+		var fighterArea = $("#fighters");
+		fighterArea.append(opponents);
+		var currentOpponents = $("#currentOpp > div");
+		currentOpponents.off("click");
+		fighterArea.append(currentOpponents);
+	$("#fighters > div").on("click", whenFighterClicked);//end on click for fighters
+	}
 
-function reset(){
-	var opponents = $("#opponents > div");
-	var fighterArea = $("#fighters");
-	fighterArea.append(opponents);
-
-}
-
-function resetSummary(){
+	function resetSummary(){
 		wins = 0;
 		losses = 0;
 		$("#wins").html("0");	
 		$("#losses").html("0");	
 		$("#total").html("0");		
-}
+	}
+
+});//end document ready
+

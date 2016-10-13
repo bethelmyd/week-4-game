@@ -32,6 +32,7 @@ body{
     opacity: 0.8;
     background-color: black;
     border:none;
+    opacity: 0.7;
 }
 
 h1, h2, h3, h4, h5, h6, #leftOfMain button, #headerNavbarHeader h2{
@@ -40,9 +41,13 @@ h1, h2, h3, h4, h5, h6, #leftOfMain button, #headerNavbarHeader h2{
 }
 
 #leftOfMain button{
-     border: 2px solid #ff3913;
+    border: 2px solid #ff3913;
     border-radius: 10px;
    
+}
+
+#leftOfMain > p, #summary > p{
+    color: white;
 }
 
 .fighterImg{
@@ -53,14 +58,21 @@ h1, h2, h3, h4, h5, h6, #leftOfMain button, #headerNavbarHeader h2{
     border-radius: 10px;
 }
 
-#fighters > div, #opponents > div{
+#fighters > div, #opponents > div, #currentOpp > div{
     float: left;
-    margin-right: 5px;
+    margin: 0 5px 5px 0;
     border: 2px solid #ff3913;
     border-radius: 10px;
     padding: 5px;
 }
 
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /*opacity: 0.6;*/
+}
 /************************************************************************************
 CLEARFIX
 *************************************************************************************/
