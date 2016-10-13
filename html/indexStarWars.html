@@ -26,7 +26,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<h2>David G. Bethelmy - Hangman</h2>
+				<h2>David G. Bethelmy - Star Wars</h2>
 			</div>
 		</div>
 	</nav>
@@ -36,13 +36,25 @@
 			<section class = "col-md-6">
 				<div id="leftOfMain">
 					<h3>Instructions</h3>
-					<p>Determine which word has been selected by the computer by guessing the letters that make up the word.<br>
-						The word must be guessed before the complete figure of a man is drawn. <br>
-						Each wrong guess results in another part of the man being drawn starting with the head.
-					</p>
-					<h4>Theme - Going to the Dogs</h4>
-					<p>Each of the words represents a breed of dog. See if you can guess which one.
-					</p>
+					<p>Choose a fighter from the selection below.</p>
+					<div id="fighters">
+						<div id="obi-wan">
+							<h6>Obi-wan Kenobi</h6>
+							<p class="fighterImg"></p>
+						</div>
+						<div id="luke">
+							<h6>Luke Skywalker</h6>
+							<p class="fighterImg"></p>
+						</div>
+						<div id="vader">
+							<h6>Darth Vader</h6>
+							<p class="fighterImg"></p>
+						</div>
+						<div id="boba">
+							<h6>Boba Fett</h6>
+							<p class="fighterImg"></p>
+						</div>						
+					</div>
 					<p><button id="startBtn" class="btn btn-hangman">Click to start game</button>
 						<button id="resetBtn" class="btn btn-hangman">Click to reset game</button>
 						<button id="resetScoreBtn" class="btn btn-hangman">Click to reset scoreboard</button>
@@ -56,10 +68,9 @@
 <!-- 			<div class="row">
 -->				
 <div class="information">
-	<h4 class="text-center">Seating Gallery</h4>
-	<p id="wordGoesHere">Current word: </p>
-	<p>Your incorrect guesses so far: <span id="youGuessed"></span></p>					
-	<p>Number of letters left to guess: <span id="numGuessesLeft"></span></p>					
+	<h4 class="text-center">Opponents</h4>
+	<div id = "opponents">
+	</div>
 </div>
 <!-- 				</div>-->
 <!--				<div class="row"> -->
@@ -82,6 +93,6 @@
 </footer>
 
 <!-- all JavaScript links go here -->
-<script src="../assets/js/hangman.js"></script>
+<script src="../assets/js/starwars.js"></script>
 </body>
 </html>

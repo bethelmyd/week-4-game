@@ -1,18 +1,7 @@
 body{
-    background-image: url("../images/schnauzers.jpg");
+    background-image: url("../images/rebel-fighters.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-}
-
-#gallows{
-    padding: 10px;
-    background-color: white;
-    border-radius: 5px;
-    /*position: relative;*/
-}
-
-#head, #leftArm, #rightArm, #leftLeg, #rightLeg, .body{
-    visibility: hidden;
 }
 
 #guesses{
@@ -35,7 +24,18 @@ body{
 
 .information{
     padding: 10px;
-    background-color: white;
     border-radius: 5px;
     margin-bottom: 5px;
 }
+
+#headerNav, #headerNavbarHeader, footer, #leftOfMain, .information, #leftOfMain button{
+    opacity: 0.8;
+    background-color: black;
+    border:none;
+}
+
+h1, h2, h3, h4, h5, h6, #leftOfMain button, #headerNavbarHeader h2{
+    color: #ff3913;
+    opacity: 1;
+}
+
