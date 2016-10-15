@@ -77,7 +77,7 @@ function generateCrystalsRandomNumbers()
 		var id = $(this).attr('id');
 		var crystalRandomNumber = Math.floor(Math.random() * multiplier) + minCrystalNumber;
 		crystals[id] = crystalRandomNumber;
-		console.log(crystals[id]);
+		// console.log(crystals[id]);
 	});
 }
 
