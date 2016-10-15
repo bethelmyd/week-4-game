@@ -27,26 +27,24 @@ $(document).ready(function(){
 	};
 
 	//create the fighters
-	var vader = new Fighter("Darth Vader", 200);
-	vader.setAttack(20, 25);
-	vader.setCounterAttack(15, 25);
+	fighters = [];
+	fighters["vader"] = new Fighter("Darth Vader", 200);
+	fighters["vader"].setAttack(20, 25);
+	fighters["vader"].setCounterAttack(15, 25);
 
-	var han = new Fighter("Han Solo", 200);
-	han.setAttack(20, 25);
-	han.setCounterAttack(15, 25);
+	fighters["han"] = new Fighter("Han Solo", 200);
+	fighters["han"].setAttack(20, 25);
+	fighters["han"].setCounterAttack(15, 25);
 
-	var luke = new Fighter("Luke Skywalker", 200);
-	luke.setAttack(20, 25);
-	luke.setCounterAttack(15, 25);
+	fighters["luke"] = new Fighter("Luke Skywalker", 200);
+	fighters["luke"].setAttack(20, 25);
+	fighters["luke"].setCounterAttack(15, 25);
 
-	var boba = new Fighter("Boba Fett", 200);
-	boba.setAttack(20, 25);
-	boba.setCounterAttack(15, 25);
+	fighters["boba"] = new Fighter("Boba Fett", 200);
+	fighters["boba"].setAttack(20, 25);
+	fighters["boba"].setCounterAttack(15, 25);
 
-
-	$("#fighters > div").on("click", whenFighterClicked);//end on click for fighters
-
-
+	$("#fighterSelection > div").on("click", whenFighterClicked);//end on click for fighters
 
 	$("#resetBtn").on("click", function(event){
 		reset();
@@ -78,10 +76,11 @@ $(document).ready(function(){
 			return;
 		}
 		var opponentArea = $("#opponents");
-		var fighters = $("#fighters > div");
+		var combatants = $("#fighterSelection > div");
 		var clicked = this;
-		fighter = this;
-		fighters.each(function(){
+		fighter = fighters[$(this).attr("id")];
+		console.log(fighter);
+		combatants.each(function(){
 			if(clicked !== this){
 				opponentArea.append(this);
 				$(this).off("click");
@@ -91,7 +90,8 @@ $(document).ready(function(){
 					// }
 					var currentOpponentArea = $("#currentOpp");
 					currentOpponentArea.append(this);
-					opponent = this;
+					opponent = fighters[$(this).attr("id")];
+					console.log(opponent);
 					$(this).off("click");
 					opponentSelected = true;
 				});//end on click for opponents);

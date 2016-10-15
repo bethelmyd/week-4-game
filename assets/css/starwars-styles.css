@@ -58,7 +58,7 @@ h1, h2, h3, h4, h5, h6, #leftOfMain button, #headerNavbarHeader h2{
     border-radius: 10px;
 }
 
-#fighters > div, #opponents > div, #currentOpp > div{
+#fighterSelection > div, #opponents > div, #currentOpp > div{
     float: left;
     margin: 0 5px 5px 0;
     border: 2px solid #ff3913;
