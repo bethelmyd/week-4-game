@@ -40,31 +40,31 @@
 					If the player defeats ALL enemies, the player wins the game. Otherwise, the player loses the game.</p>
 					<p>Choose a fighter from the selection below.</p>
 					<div id="fighterSelection" class="clearfix">
-						<div id="han">
+						<div id="han" value="0">
 							<h6 class="text-center">Han Solo</h6>
 							<p class="fighterImg"></p>
 						</div>
-						<div id="luke">
+						<div id="luke" value="1">
 							<h6 class="text-center">Luke Skywalker</h6>
 							<p class="fighterImg"></p>
 						</div>
-						<div id="vader">
+						<div id="vader" value="2">
 							<h6 class="text-center">Darth Vader</h6>
 							<p class="fighterImg"></p>
 						</div>
-						<div id="boba">
+						<div id="boba" value="3">
 							<h6 class="text-center">Boba Fett</h6>
 							<p class="fighterImg"></p>
 						</div>						
 						<button id="attack" class="btn btn-attack">Attack</button>
 					</div>
-					<p id="fighterHealthPara">Remaining health: <span id="fighterHealth">0</span></p>
-					<p><button id="startBtn" class="btn btn-hangman">Click to start game</button>
-						<button id="resetBtn" class="btn btn-hangman">Click to reset game</button>
-						<button id="resetScoreBtn" class="btn btn-hangman">Click to reset scoreboard</button>
+					<p id="fighterHealthPara">Health: <span id="fighterHealth">0</span></p>
+					<p id="results"></p>
+					<p><button id="startBtn" class="btn btn-starwars">Click to start game</button>
+						<button id="resetBtn" class="btn btn-starwars">Click to reset game</button>
+						<button id="resetScoreBtn" class="btn btn-starwars">Click to reset scoreboard</button>
 
 					</p>
-					<p id="results"></p>
 					</div>
 				</section>
 				<section class = "col-md-2">
@@ -88,7 +88,7 @@
 	<h4 class="text-center">Current Opponent</h4>
 	<div id = "currentOpp" class="clearfix">
 	</div>
-	<p id="opponentHealthPara">Remaining health: <span id="opponentHealth">0</span></p>
+	<p id="opponentHealthPara">Health: <span id="opponentHealth">0</span></p>
 </div>
 <!-- 				</div>-->
 <!--				<div class="row"> -->

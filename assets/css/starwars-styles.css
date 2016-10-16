@@ -10,7 +10,7 @@ body{
     text-decoration: underline;
 }
 
-.btn-hangman{
+.btn-starwars{
     background-color: teal;
     color: white;
 }
@@ -70,6 +70,9 @@ h1, h2, h3, h4, h5, h6, #leftOfMain button, #headerNavbarHeader h2{
     display: none;
 }
 
+#results{
+    font-size: 2em;
+}
 /************************************************************************************
 CLEARFIX
 *************************************************************************************/

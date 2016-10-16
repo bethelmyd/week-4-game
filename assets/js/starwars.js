@@ -7,34 +7,38 @@ $(document).ready(function(){
 	var canAttack = false;
 	var fighterSelected = false;
 	var opponentSelected = false;
+	var selectOpponent = true;
 	var fighter = null;
 	var opponent = null;
-	var globalHealth = 200;
+	var minHealth = 200;
+	var maxHealth = 1000;
+	var minAttack = 20;
+	var maxAttack = 25;
+	var minCounterAttack = 20;
+	var maxCounterAttack = 25;
 	var numDefeated = 0;
 
-	function Fighter(name, health) {
+	function Fighter(name) {
 		this.name = name;
-		this.health = health;
+		this.health = 0;
 		this.attack = 0;
 		var attackCopy = 0;
 		this.counterAttack = 0;
 		this.isAlive = function(){
 			return health > 0;
 		};
-		this.setAttack = function(min, max){
+		this.set = function(min, max, msg){
 			var numValues = max - min + 1;
-			this.attack = Math.floor(Math.random()*numValues) + min;
-			attackCopy = this.attack;
-		};
-		this.setCounterAttack = function(min, max){
-			var numValues = max - min + 1;
-			this.counterAttack = Math.floor(Math.random()*numValues) + min;
+			var random = Math.floor(Math.random()*numValues) + min;
+			switch(msg)
+			{
+				case "health": this.health = random; break;
+				case "attack": attackCopy = this.attack = random; break;
+				case "counterAttack": this.counterAttack = random; break;
+			}
 		};
 		this.reduceHealth = function(amount){
 			this.health -= amount;
-		};
-		this.setHealth = function(health){
-			this.health = health;
 		};
 		this.upAttack = function(){
 			this.attack += attackCopy;
@@ -43,21 +47,29 @@ $(document).ready(function(){
 
 	//create the fighters
 	var fighters = [];
-	fighters["vader"] = new Fighter("Darth Vader", globalHealth);
-	fighters["vader"].setAttack(20, 25);
-	fighters["vader"].setCounterAttack(15, 25);
+	var han = new Fighter("Han Solo");
+	han.set(minHealth, maxHealth, "health");	
+	han.set(minAttack, maxAttack, "attack");
+	han.set(minCounterAttack, maxCounterAttack, "counterAttack");
+	fighters.push(han);
 
-	fighters["han"] = new Fighter("Han Solo", globalHealth);
-	fighters["han"].setAttack(20, 25);
-	fighters["han"].setCounterAttack(15, 25);
+	var luke = new Fighter("Luke Skywalker");
+	luke.set(minHealth, maxHealth, "health");	
+	luke.set(minAttack, maxAttack, "attack");
+	luke.set(minCounterAttack, maxCounterAttack, "counterAttack");
+	fighters.push(luke);
 
-	fighters["luke"] = new Fighter("Luke Skywalker", globalHealth);
-	fighters["luke"].setAttack(20, 25);
-	fighters["luke"].setCounterAttack(15, 25);
+	var vader = new Fighter("Darth Vader");
+	vader.set(minHealth, maxHealth, "health");	
+	vader.set(minAttack, maxAttack, "attack");
+	vader.set(minCounterAttack, maxCounterAttack, "counterAttack");
+	fighters.push(vader);
 
-	fighters["boba"] = new Fighter("Boba Fett", globalHealth);
-	fighters["boba"].setAttack(20, 25);
-	fighters["boba"].setCounterAttack(15, 25);
+	var boba = new Fighter("Boba Fett");
+	boba.set(minHealth, maxHealth, "health");	
+	boba.set(minAttack, maxAttack, "attack");
+	boba.set(minCounterAttack, maxCounterAttack, "counterAttack");
+	fighters.push(boba);
 
 	$("#fighterSelection > div").on("click", whenFighterClicked);//end on click for fighters
 
@@ -90,25 +102,27 @@ $(document).ready(function(){
 			alert("Start game first please");
 			return;
 		}
+		if(fighterSelected) return;
+		fighterSelected = true;
+		selectOpponent = true;
 		var opponentArea = $("#opponents");
 		var combatants = $("#fighterSelection > div");
 		var clicked = this;
-		fighter = fighters[$(this).attr("id")];
+		fighter = fighters[$(this).attr("value")];
 		// console.log(fighter);
 		combatants.each(function(){
 			if(clicked !== this){
 				opponentArea.append(this);
 				$(this).off("click");
 				$(this).on("click", function(event){
-					// if(!fighterSelected){
-					// 	alert()
-					// }
+					if(!selectOpponent) return;
 					var currentOpponentArea = $("#currentOpp");
 					currentOpponentArea.append(this);
-					opponent = fighters[$(this).attr("id")];
+					opponent = fighters[$(this).attr("value")];
 					// console.log(opponent);
 					$(this).off("click");
 					opponentSelected = true;
+					selectOpponent = false;
 					$("#opponentHealthPara").css("display", "block");
 					$("#opponentHealth").html(opponent.health);
 				});//end on click for opponents);
@@ -132,26 +146,41 @@ $(document).ready(function(){
 				fighter.reduceHealth(opponent.counterAttack);
 				var fHealth = fighter.health;
 				var oHealth = opponent.health;
-				$("#fighterHealth").html(fHealth);
-				$("#opponentHealth").html(oHealth);
 				fighter.upAttack();
-				if(fighter.health <= 0)
+				if(fHealth <= 0)
 				{
+					fHealth = 0;
 					$("#results").html("Sorry! You lost!");
 					$("#results").css("display", "block");
+					gameOn = false;
+					$("#attack").css("display", "none");
+					fighterSelected = false;
+					opponentSelected = false;				
 				}
-				else if (opponent.health <= 0){
+				else if (oHealth <= 0){
+					oHealth = 0;
 					numDefeated++;
 					if(numDefeated == fighters.length-1){  //you are not an opponent
 						//You won
-						$("#results").html("Congrats! You beat them all!");
 						$("#results").css("display", "block");
+						$("#results").html("Congrats! You beat them all!");
+						gameOn = false;
+						$("#attack").css("display", "none");
+						fighterSelected = false;
+						opponentSelected = false;				
 					}
 					else{
 						//go get the next opponent
 						opponentSelected = false;
+						selectOpponent = true;
 					}
+						$("#currentOpp > div").css("display", "none");
+						$("#opponentHealthPara").css("display", "none");
 				}
+
+				$("#fighterHealth").html(fHealth);
+				$("#opponentHealth").html(oHealth);
+
 			}
 			else
 			{
@@ -172,22 +201,24 @@ $(document).ready(function(){
 		var currentOpponents = $("#currentOpp > div");
 		currentOpponents.off("click");
 		fighterArea.append(currentOpponents);
+		currentOpponents.css("display", "block");
 		$("#fighterSelection > div").on("click", whenFighterClicked);//end on click for fighters
 		$(".btn-attack").css("display", "none");
 		gameOn = false;	
 		canAttack = false;	
 		if (fighterSelected){
-			fighter.setHealth(globalHealth);
-			fighter.setAttack(20, 25);
-			fighter.setCounterAttack(15, 25);
+			fighter.set(minHealth,maxHealth,"health");
+			fighter.set(minAttack, maxAttack, "attack");
+			fighter.set(minCounterAttack,maxCounterAttack, "counterAttack");
 		}
 		if (opponentSelected) {
-			opponent.setHealth(globalHealth);
-			opponent.setAttack(20, 25);
-			opponent.setCounterAttack(15, 25);
+			opponent.set(minHealth,maxHealth,"health");
+			opponent.set(minAttack, maxAttack, "attack");
+			opponent.set(minCounterAttack,maxCounterAttack, "counterAttack");
 		}
 		fighterSelected = false;
 		opponentSelected = false;
+		selectOpponent = true;
 		fighter = opponent = null;
 		$("#fighterHealthPara").css("display", "none");
 		$("#opponentHealthPara").css("display", "none");
@@ -195,6 +226,7 @@ $(document).ready(function(){
 		$("#results").html("");
 		$("#fighterHealth").html("0");
 		$("#opponentHealth").html("0");
+		numDefeated = 0;
 
 	}
 
