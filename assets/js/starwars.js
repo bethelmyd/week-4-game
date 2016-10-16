@@ -14,8 +14,8 @@ $(document).ready(function(){
 	var maxHealth = 300;
 	var minAttack = 6;
 	var maxAttack = 8;
-	var minCounterAttack = 6;
-	var maxCounterAttack = 8;
+	var minCounterAttack = 12;
+	var maxCounterAttack = 15;
 	var numDefeated = 0;
 
 	function Fighter(name) {
@@ -150,6 +150,7 @@ $(document).ready(function(){
 				if(fHealth <= 0)
 				{
 					fHealth = 0;
+					oHealth = 0;
 					$("#results").html("Sorry! You lost!");
 					$("#results").css("display", "block");
 					gameOn = false;
@@ -159,6 +160,8 @@ $(document).ready(function(){
 					losses++;
 					$("#losses").html(losses);									
 					$("#total").html(wins+losses);
+					$("#currentOpp > div").css("display", "none");
+					$("#opponentHealthPara").css("display", "none");
 				}
 				else if (oHealth <= 0){
 					oHealth = 0;
