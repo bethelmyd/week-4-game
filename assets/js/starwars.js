@@ -11,11 +11,11 @@ $(document).ready(function(){
 	var fighter = null;
 	var opponent = null;
 	var minHealth = 200;
-	var maxHealth = 1000;
-	var minAttack = 20;
-	var maxAttack = 25;
-	var minCounterAttack = 20;
-	var maxCounterAttack = 25;
+	var maxHealth = 300;
+	var minAttack = 6;
+	var maxAttack = 8;
+	var minCounterAttack = 6;
+	var maxCounterAttack = 8;
 	var numDefeated = 0;
 
 	function Fighter(name) {
@@ -155,7 +155,10 @@ $(document).ready(function(){
 					gameOn = false;
 					$("#attack").css("display", "none");
 					fighterSelected = false;
-					opponentSelected = false;				
+					opponentSelected = false;
+					losses++;
+					$("#losses").html(losses);									
+					$("#total").html(wins+losses);
 				}
 				else if (oHealth <= 0){
 					oHealth = 0;
@@ -167,15 +170,18 @@ $(document).ready(function(){
 						gameOn = false;
 						$("#attack").css("display", "none");
 						fighterSelected = false;
-						opponentSelected = false;				
+						opponentSelected = false;
+						wins++;				
+						$("#wins").html(wins);
+						$("#total").html(wins+losses);
 					}
 					else{
 						//go get the next opponent
 						opponentSelected = false;
 						selectOpponent = true;
 					}
-						$("#currentOpp > div").css("display", "none");
-						$("#opponentHealthPara").css("display", "none");
+					$("#currentOpp > div").css("display", "none");
+					$("#opponentHealthPara").css("display", "none");
 				}
 
 				$("#fighterHealth").html(fHealth);
@@ -205,17 +211,12 @@ $(document).ready(function(){
 		$("#fighterSelection > div").on("click", whenFighterClicked);//end on click for fighters
 		$(".btn-attack").css("display", "none");
 		gameOn = false;	
-		canAttack = false;	
-		if (fighterSelected){
-			fighter.set(minHealth,maxHealth,"health");
-			fighter.set(minAttack, maxAttack, "attack");
-			fighter.set(minCounterAttack,maxCounterAttack, "counterAttack");
-		}
-		if (opponentSelected) {
-			opponent.set(minHealth,maxHealth,"health");
-			opponent.set(minAttack, maxAttack, "attack");
-			opponent.set(minCounterAttack,maxCounterAttack, "counterAttack");
-		}
+		canAttack = false;
+		for(var i = 0; i < fighters.length; i++){	
+			fighters[i].set(minHealth,maxHealth,"health");
+			fighters[i].set(minAttack, maxAttack, "attack");
+			fighters[i].set(minCounterAttack,maxCounterAttack, "counterAttack");
+		};
 		fighterSelected = false;
 		opponentSelected = false;
 		selectOpponent = true;
