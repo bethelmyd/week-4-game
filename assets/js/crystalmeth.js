@@ -146,9 +146,9 @@ function showResults(message)
 	{
 		wins = 0;
 		losses = 0;
-		$("#wins").html("");	
-		$("#losses").html("");	
-		$("#total").html("");	
+		$("#wins").html("0");	
+		$("#losses").html("0");	
+		$("#total").html("0");	
 	}
 
 

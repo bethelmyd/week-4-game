@@ -26,7 +26,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<h2>Star Wars</h2>
+				<h2>David G. Bethelmy - Star Wars</h2>
 			</div>
 		</div>
 	</nav>
@@ -42,31 +42,38 @@
 					<div id="fighterSelection" class="clearfix">
 						<div id="han">
 							<h6 class="text-center">Han Solo</h6>
-							<p> class="fighterImg"></p>
+							<p class="fighterImg"></p>
 						</div>
 						<div id="luke">
 							<h6 class="text-center">Luke Skywalker</h6>
-							<p> class="fighterImg"></p>
+							<p class="fighterImg"></p>
 						</div>
 						<div id="vader">
 							<h6 class="text-center">Darth Vader</h6>
-							<p> class="fighterImg"></p>
+							<p class="fighterImg"></p>
 						</div>
 						<div id="boba">
 							<h6 class="text-center">Boba Fett</h6>
-							<p> class="fighterImg"></p>
+							<p class="fighterImg"></p>
 						</div>						
 						<button id="attack" class="btn btn-attack">Attack</button>
 					</div>
+					<p id="fighterHealthPara">Remaining health: <span id="fighterHealth">0</span></p>
 					<p><button id="startBtn" class="btn btn-hangman">Click to start game</button>
 						<button id="resetBtn" class="btn btn-hangman">Click to reset game</button>
 						<button id="resetScoreBtn" class="btn btn-hangman">Click to reset scoreboard</button>
 
 					</p>
-					<p>
+					<p id="results"></p>
 					</div>
 				</section>
 				<section class = "col-md-2">
+<div id = "summary" class="information">
+	<h4 class="text-center">Scoreboard</h4>
+	<p>Games won: <span id = "wins">0</span></p>
+	<p>Games lost: <span id="losses">0</span></p>					
+	<p>Total games: <span id="total">0</span></p>					
+</div>
 				</section>
 				<section class="col-md-4">
 <!-- 			<div class="row">
@@ -81,15 +88,10 @@
 	<h4 class="text-center">Current Opponent</h4>
 	<div id = "currentOpp" class="clearfix">
 	</div>
+	<p id="opponentHealthPara">Remaining health: <span id="opponentHealth">0</span></p>
 </div>
 <!-- 				</div>-->
 <!--				<div class="row"> -->
-<div id = "summary" class="information">
-	<h4 class="text-center">Scoreboard</h4>
-	<p>Games won: <span id = "wins">0</span></p>
-	<p>Games lost: <span id="losses">0</span></p>					
-	<p>Total games: <span id="total">0</span></p>					
-</div>
 <!-- </div> -->
 </section>
 </section>
