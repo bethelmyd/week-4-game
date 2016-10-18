@@ -52,10 +52,18 @@ h1, h2, h3, h4, h5, h6, #leftOfMain button, #headerNavbarHeader h2{
 
 .fighterImg{
     background-color: silver;
-    opacity: .5;
+    opacity: 1;
     width: 100px;
     height: 100px;
     border-radius: 10px;
+    padding: 0;
+}
+
+#fighterSelection img, #opponents img, #currentOpp img{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    opacity: 1;
 }
 
 #fighterSelection > div, #opponents > div, #currentOpp > div{
@@ -64,6 +72,11 @@ h1, h2, h3, h4, h5, h6, #leftOfMain button, #headerNavbarHeader h2{
     border: 2px solid #ff3913;
     border-radius: 10px;
     padding: 5px;
+}
+
+#fighterSelection > div > p, #opponents p, #currentOpp p{
+    padding: 0;
+    opacity: 1;
 }
 
 #attack, #fighterHealthPara, #opponentHealthPara, #results {

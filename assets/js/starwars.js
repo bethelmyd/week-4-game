@@ -13,9 +13,9 @@ $(document).ready(function(){
 	var minHealth = 200;
 	var maxHealth = 300;
 	var minAttack = 6;
-	var maxAttack = 8;
-	var minCounterAttack = 12;
-	var maxCounterAttack = 15;
+	var maxAttack = 12;
+	var minCounterAttack = 15;
+	var maxCounterAttack = 25;
 	var numDefeated = 0;
 	var fighters = [];
 
