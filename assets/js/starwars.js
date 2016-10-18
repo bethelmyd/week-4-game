@@ -17,6 +17,7 @@ $(document).ready(function(){
 	var minCounterAttack = 12;
 	var maxCounterAttack = 15;
 	var numDefeated = 0;
+	var fighters = [];
 
 	function Fighter(name) {
 		this.name = name;
@@ -46,60 +47,53 @@ $(document).ready(function(){
 	};
 
 	//create the fighters
-	var fighters = [];
-	var han = new Fighter("Han Solo");
-	han.set(minHealth, maxHealth, "health");	
-	han.set(minAttack, maxAttack, "attack");
-	han.set(minCounterAttack, maxCounterAttack, "counterAttack");
-	fighters.push(han);
+	function createFighters(){
+		var han = new Fighter("Han Solo");
+		fighters.push(han);
+		var luke = new Fighter("Luke Skywalker");
+		fighters.push(luke);
+		var vader = new Fighter("Darth Vader");
+		fighters.push(vader);
+		var boba = new Fighter("Boba Fett");
+		fighters.push(boba);
 
-	var luke = new Fighter("Luke Skywalker");
-	luke.set(minHealth, maxHealth, "health");	
-	luke.set(minAttack, maxAttack, "attack");
-	luke.set(minCounterAttack, maxCounterAttack, "counterAttack");
-	fighters.push(luke);
+		for(var i = 0; i < fighters.length; i++){			
+			fighters[i].set(minHealth, maxHealth, "health");	
+			fighters[i].set(minAttack, maxAttack, "attack");
+			fighters[i].set(minCounterAttack, maxCounterAttack, "counterAttack");
+		}
+	}
 
-	var vader = new Fighter("Darth Vader");
-	vader.set(minHealth, maxHealth, "health");	
-	vader.set(minAttack, maxAttack, "attack");
-	vader.set(minCounterAttack, maxCounterAttack, "counterAttack");
-	fighters.push(vader);
+	function setUpClickEvents(){
+		$("#fighterSelection > div").on("click", whenFighterClicked);//end on click for fighters
 
-	var boba = new Fighter("Boba Fett");
-	boba.set(minHealth, maxHealth, "health");	
-	boba.set(minAttack, maxAttack, "attack");
-	boba.set(minCounterAttack, maxCounterAttack, "counterAttack");
-	fighters.push(boba);
-
-	$("#fighterSelection > div").on("click", whenFighterClicked);//end on click for fighters
-
-	$("#resetBtn").on("click", function(event){
-		reset();
-	});
-
-	$("#resetScoreBtn").on("click", function(event){
-		reset();
-		resetSummary();
-	});
-
-
-	$("#startBtn").on("click", function(){
-		if(!gameOn){
+		$("#resetBtn").on("click", function(event){
 			reset();
-			gameOn = true;
+		});
 
-		}
-		else
-		{
-		}
-	});
+		$("#resetScoreBtn").on("click", function(event){
+			reset();
+			resetSummary();
+		});
+
+
+		$("#startBtn").on("click", function(){
+			if(!gameOn){
+				reset();
+				gameOn = true;
+			}
+		});
+
+		$("#attack").on("click", whenAttackClicked);
+	}
 
 
 	function whenFighterClicked(event)
 	{
 		if(!gameOn)
 		{
-			alert("Start game first please");
+			$("#results").html("Start game first please");
+			$("#results").css("display", "block");
 			return;
 		}
 		if(fighterSelected) return;
@@ -116,6 +110,8 @@ $(document).ready(function(){
 				$(this).off("click");
 				$(this).on("click", function(event){
 					if(!selectOpponent) return;
+					$("#results").css("display", "none");
+					$("#results").html("");
 					var currentOpponentArea = $("#currentOpp");
 					currentOpponentArea.append(this);
 					opponent = fighters[$(this).attr("value")];
@@ -132,16 +128,19 @@ $(document).ready(function(){
 		$("#attack").css("display", "inline-block");
 		$("#fighterHealthPara").css("display", "block");
 		$("#fighterHealth").html(fighter.health);
-		fighterSelected = true;
 	}	
 
-	$("#attack").on("click", function(event){
+	function whenAttackClicked(event)
+	{
 		if(fighterSelected)
 		{
 			if(opponentSelected)
 			{
 				// console.log(fighter);
 				// console.log(opponent);
+				$("#results").css("display", "none");
+				$("#results").html("");
+
 				opponent.reduceHealth(fighter.attack);
 				fighter.reduceHealth(opponent.counterAttack);
 				var fHealth = fighter.health;
@@ -154,7 +153,7 @@ $(document).ready(function(){
 					$("#results").html("Sorry! You lost!");
 					$("#results").css("display", "block");
 					gameOn = false;
-					$("#attack").css("display", "none");
+					$(this).css("display", "none");
 					fighterSelected = false;
 					opponentSelected = false;
 					losses++;
@@ -171,7 +170,7 @@ $(document).ready(function(){
 						$("#results").css("display", "block");
 						$("#results").html("Congrats! You beat them all!");
 						gameOn = false;
-						$("#attack").css("display", "none");
+						$(this).css("display", "none");
 						fighterSelected = false;
 						opponentSelected = false;
 						wins++;				
@@ -193,14 +192,16 @@ $(document).ready(function(){
 			}
 			else
 			{
-				alert("Select an opponent please.");
+				$("#results").html("Select an opponent please.");
+				$("#results").css("display", "block");
 			}
 		}
 		else
 		{
-			alert("Select a fighter please.");
+			$("#results").html("Select a fighter please.");
+			$("#results").css("display", "block");
 		}
-	});
+	}
 
 	function reset(){
 		var opponents = $("#opponents > div");
@@ -242,5 +243,9 @@ $(document).ready(function(){
 		$("#total").html("0");		
 	}
 
+
+	//start the ball rolling
+	createFighters();
+	setUpClickEvents();
 });//end document ready
 
